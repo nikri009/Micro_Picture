@@ -1,0 +1,30 @@
+[
+    {
+        "no":1,
+        "name":"Sugeng no pants",
+        "alamat":"Cilengsi",
+        "gender":"Laki-laki",
+        "paslon":"paloh"
+    },
+    {
+        "no":2,
+        "name":"Monkey D lutfy",
+        "alamat":"Cibinong",
+        "gender":"Laki-laki",
+        "paslon":"surya"
+    },
+    {
+        "no":3,
+        "name":"Jack the Ripper",
+        "alamat":"Depok",
+        "gender":"Laki-laki",
+        "paslon":"Cintara"
+    },
+    {
+        "no":4,
+        "name":"James Yanto",
+        "alamat":"Tangerang",
+        "gender":"Laki-laki",
+        "paslon":"paloh"
+    }
+]

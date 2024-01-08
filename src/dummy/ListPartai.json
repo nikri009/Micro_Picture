@@ -1,0 +1,16 @@
+[
+    {
+        "no":1,
+        "img":"/src/assets/img/Paslon.png",
+        "name":"Cintara Surya Paloh",
+        "visi":["Cosplay Gratis bagi Wiboo","Nonton Bioskop 3x sehari"],
+        "alamat":"Kerajaan Banteng Beradab"
+    },
+    {
+        "no":2,
+        "img":"/src/assets/img/Paslon.png",
+        "name":"Surya Surya",
+        "visi":["Gaji UMR Naik di Angka 10JT Per-bulan","Nonton Bioskop 3x sehari"],
+        "alamat":"Kingdom Empire"
+    }
+]

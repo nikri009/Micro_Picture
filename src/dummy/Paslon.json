@@ -1,0 +1,31 @@
+
+
+[
+    {
+        "id":3,
+        "name":"CINTARA SURYA PALOH",
+        "visi":["Meminoahkan Inoonesia Ke Isekai","Nonton Anime 3x sehari"],
+        "koalisi":["Partai Persatuan Wiboo","Partai Rnobull"],
+        "akumulasi":"78%",
+        "vote":300,
+        "bg":"bg-orange-950"
+    },
+    {
+        "id":1,
+        "name":"SURYA SURYA",
+        "visi":["Cosplay Gratis bagi Wiboo","Nonton Bioskop 3x sehari"],
+        "koalisi":["Partai Persatuan Cosplay","Partai Wibo indonesia"],
+        "akumulasi":"45%",
+        "vote":117,
+        "bg":"bg-yellow-800"
+    },
+    {
+        "id":2,
+        "name":"CINTARA ",
+        "visi":["Meminoahkan Inoonesia Ke Isekai","Nonton Anime 3x sehari"],
+        "koalisi":["Partai Persatuan Wiboo","Partai Rnobull"],
+        "akumulasi":"25%",
+        "vote":117,
+        "bg":"bg-sky-900"
+    }
+]
