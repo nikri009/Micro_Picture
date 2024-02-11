@@ -1,29 +1,51 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useAuth } from "../auth/Auth";
+import { useMutation } from "react-query";
+import { LoginData } from "../types/DataPaslon";
 
-interface LoginProps {
-    onLogin: () => void;
+const loginUser = async ({ username, password }:LoginData) => {
+    try {
+        const response = await axios.post('http://localhost:5000/api/v1/user/login',{username, password})
+        const { token, user } = response.data;
+        return { token, user};
+    } catch (error) {
+        console.log("eror get login",error)
+        throw error;
+    }
 }
 
-const Login:React.FC<LoginProps> = ({onLogin}) => {
-    const [users, setUsers] = useState({username:'', password:''})
-    const [error, setError] = useState('');
+const Login:React.FC= () => {
+    
+    const [login, setLogin] = useState({
+        username:'', 
+        password:''
+    })
+    
+    const navigate = useNavigate();
+    const { login: authLogin } = useAuth();
+    const { mutate } = useMutation(loginUser, {
+        onSuccess: ({ token, user}) => {
+            console.log("login successfull", )
+            authLogin({ username:login.username, password: login.password, token, user})
+            navigate('/')
+        },
+        onError: (error) => {
+            console.error("login error",error)
+        }
+    })
+
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>{
         const { name, value} = e.target;
-        setUsers((prevUsers)=>({...prevUsers, [name]: value}))
+        setLogin({...login, [name]: value})
         
     }
-
-    const handleSubmit = (e: React.FormEvent) => {
+    
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        
-        if (users.username === 'users' && users.password === 'password'){
-            onLogin();
-            
-        }else {
-            setError('Password or username wrong')
-        }
+        mutate(login)
     }
     
 
@@ -36,37 +58,29 @@ const Login:React.FC<LoginProps> = ({onLogin}) => {
                 
                     <div className="grid w-4/5">
                         <label htmlFor="username">Username</label>
-                        <input type="text" name="username" className=" border-2 rounded-md h-8" value={users.username} onChange={handleChange}/>
+                        <input type="text" name="username" className=" border-2 rounded-md h-8" value={login.username} onChange={handleChange}/>
                     </div>
 
                     <div className="grid w-4/5">
                         <label htmlFor="password">Password</label>
-                        <input type="password" name="password" className=" border-2 rounded-md h-8" value={users.password} onChange={handleChange}/>
+                        <input type="password" name="password" className=" border-2 rounded-md h-8" value={login.password} onChange={handleChange}/>
                     </div>
 
                 </div>
                 <div className=" flex justify-center items-center my-5 ">
-                <button className="w-4/5 bg-lime-700 rounded-md h-8 text-white " type="submit" onClick={handleSubmit}> <Link to="/" ><b> Submit </b> </Link></button>
+                <button className="w-4/5 bg-lime-700 rounded-md h-8 text-white " type="submit"> <b> Submit </b> </button>
                 </div>
 
 
                 <i><p className="text-center mt-4 mb-7"> Don't have an account ? <Link to="/register" className="text-sky-600" >Register</Link></p></i>
                 
             </form>
-            {error && <p style={{color:'red'}} className="text-center my-3">{error}</p>}
+            {/* {error && <p style={{color:'red'}} className="text-center my-3">{error}</p>} */}
             </div>
         </div>
     )
-}
+}   
 
 export default Login;
 
 
-// if(users.username === 'admin' && users.password === '12345'){
-        //     onLogin(true)
-        // } else if (users.username === 'users' && users.password === 'password'){
-        //     onLogin(true);
-            
-        // }else {
-        //     setError('Password or username wrong')
-        // }

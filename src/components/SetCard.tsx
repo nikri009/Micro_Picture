@@ -1,7 +1,13 @@
 import Card from "../elements/Card";
 import ArticleCard from "../elements/ArticleCard";
-const SetCard: React.FC = () => {
+import { Link } from "react-router-dom";
 
+
+interface SetCard {
+    isLoggedIn: boolean;
+  }
+const SetCard: React.FC<SetCard> = ({isLoggedIn}) => {
+   
     return(
         
         <div className="flex flex-warp flex-col w-4/5 my-10">
@@ -11,7 +17,17 @@ const SetCard: React.FC = () => {
             <Card/>
             <Card/>
             <Card/>
+
+            
             </div>
+            {isLoggedIn ? (
+                
+                <div className="flex justify-center ">
+                <Link to={'/addblogs'} className="bg-lime-800 text-white p-2 my-5 rounded-md"><b> Add Blogs </b></Link>
+            </div>
+            ):(
+                <div></div>
+            )}
             
         </div>
             

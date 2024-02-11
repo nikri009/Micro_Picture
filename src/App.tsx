@@ -1,45 +1,52 @@
 import {  Route , BrowserRouter as Router, Routes } from "react-router-dom";
-import { useState } from "react";
+// import { useState } from "react";
 import Home from "./fregments/Home";
 import Vote from "./fregments/Vote";
-import Login from "./fregments/login";
+import Login from "./fregments/Login";
 import Register from "./fregments/Register";
 import DsAdmin from "./fregments/DsAdmin";
 import NavbarBF from "./components/NavbarBF";
+import { AuthProvider } from "./auth/Auth";
+import { QueryClient, QueryClientProvider } from "react-query";
+import AddBlogs from "./fregments/AddBlogs";
 
-
+const queryClient = new QueryClient();
 
 const App:React.FC = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  // const [isAdmin, setIsAdmin] = useState(false)
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // // const [isAdmin, setIsAdmin] = useState(false)
 
-  const handleLogin = () => {
-    setIsLoggedIn(true);
-    // setIsAdmin(admin)
-    console.log(isLoggedIn)
+  // const handleLogin = () => {
+  //   setIsLoggedIn(true);
+   
+  //   console.log(isLoggedIn)
     
-  };
+  // };
 
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-    // setIsAdmin(false)
-  };
+  // const handleLogout = () => {
+  //   setIsLoggedIn(false);
+    
+  // };
   
-  // console.log(isAdmin)
-
+  
+  
   return(
     <Router>
-      <NavbarBF isLoggedIn={isLoggedIn} onLogout={handleLogout} />
-     
-      <Routes>
-        <Route path="/" element={<Home />}/>
-        <Route path="/vote" element={<Vote/>}/>
-        <Route path="/login" element={<Login  onLogin={handleLogin} />}/>
-        <Route path="/register" element={<Register/>}/>
-        <Route path="/dasboard" element={<DsAdmin/>}/>
-        
-      </Routes>
+     <QueryClientProvider client={queryClient}>
 
+      <AuthProvider>
+        <NavbarBF />
+        <Routes>
+          <Route path="/" element={<Home />}/>
+          <Route path="/vote" element={<Vote/>}/>
+          <Route path="/login" element={<Login  />}/>
+          <Route path="/register" element={<Register/>}/>
+          <Route path="/dasboard" element={<DsAdmin/>}/>
+          <Route path="/addblogs" element={<AddBlogs />}/>
+        </Routes>
+
+     </AuthProvider>
+     </QueryClientProvider>
   </Router>
    
     

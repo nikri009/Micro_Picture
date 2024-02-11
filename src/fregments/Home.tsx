@@ -1,7 +1,8 @@
-
+import { useAuth } from "../auth/Auth"
 import Article from "../components/Article"
 import SetCard from "../components/SetCard"
 import FooterHome from "../components/FooterHome"
+// import NavbarBF from "../components/NavbarBF"
 
 
 // const Home: React.FC<NavbarProps> = ({isLoggedIn, onLogout}) =>{
@@ -15,10 +16,11 @@ import FooterHome from "../components/FooterHome"
 //     )
 // }
 const Home: React.FC = () =>{
+    const { isLoggedIn} = useAuth();
     return (
         <div className="flex flex-col justify-center items-center w-full bg-slate-300">
             <Article/>
-            <SetCard/>
+            <SetCard isLoggedIn={isLoggedIn()} />
             <FooterHome/>
         </div>
     )

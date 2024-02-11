@@ -32,3 +32,29 @@ export interface TypePartai {
     visi:string[],
     alamat:string
 }
+
+export interface TypeRegist {
+    name:string,
+    address:string,
+    sex:string,
+    username:string,
+    password:string
+}
+
+export interface User {
+    fullname:string,
+    id: number
+}
+
+export interface LoginData {
+    username:string,
+    password:string
+}
+
+export interface TypeBlogs {
+    title:string
+    description:string,
+    image:string,
+    // user:number,
+    author:string
+}
